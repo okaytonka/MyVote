@@ -1,0 +1,27 @@
+
+/**
+ * Profile image component
+ */
+
+
+
+
+
+
+/**
+ * Ranking component
+ */
+.rank-label-container {
+    margin-top: -5px;
+    /* z-index: 1000; */
+    text-align: center;
+    font-family: 'Work Sans', sans-serif;
+
+}
+
+.label.label-default.rank-label {
+    padding: px 10px 5px 10px;
+    font-family: 'Work Sans', sans-serif;
+
+    border-radius: 27px;
+}
