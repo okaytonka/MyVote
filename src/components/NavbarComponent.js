@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
 MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon,MDBCardImage } from "mdbreact";
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router ,Route,Switch } from 'react-router-dom';
 import okay from '../images/okay.jpg'
-
+import MainComponent from "./MainComponent";
+import RegisterComponent from './RegisterComponent'
+import UserProperties from "./UserProperties";
 class NavbarComponent extends Component {
 state = {
   isOpen: false
@@ -17,19 +19,18 @@ render() {
 
 
     return (
-      
 
-<Router>
 
       <MDBNavbar color="white" dark="true"  expand="md" fixed="top" transparent="false">
-        <MDBNavbarBrand>
+        <MDBNavbarBrand href="/Home">
           <strong className="white-text">MyVote</strong>
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
           <MDBNavbarNav left>
             <MDBNavItem active>
-              <MDBNavLink to="#!">Anasayfa</MDBNavLink>
+              <MDBNavLink to="/Home">Anasayfa</MDBNavLink>
+              
             </MDBNavItem>
             <MDBNavItem>
               <MDBNavLink to="#!">Ara</MDBNavLink>
@@ -73,8 +74,9 @@ render() {
 
                 <MDBDropdownMenu className="dropdown-default" right="false">
 
-                  <MDBDropdownItem href="#!">Ayarlar</MDBDropdownItem>
-                  <MDBDropdownItem href="#!">Çıkış</MDBDropdownItem>
+                <MDBDropdownItem href="/Profile">Profilim</MDBDropdownItem>
+                  <MDBDropdownItem href="/Settings">Ayarlar</MDBDropdownItem>
+                  <MDBDropdownItem href="/logout">Çıkış</MDBDropdownItem>
    
 
                 </MDBDropdownMenu>
@@ -83,7 +85,7 @@ render() {
           </MDBNavbarNav>
         </MDBCollapse>
       </MDBNavbar>
-    </Router>
+     
 
     
     );

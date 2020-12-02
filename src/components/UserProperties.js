@@ -1,6 +1,7 @@
 import React, { Component,Link } from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
 import "../components/css/userproperties.css"
+import NavbarComponent from './NavbarComponent';
 
   class UserProperties extends Component {
       
@@ -13,7 +14,12 @@ import "../components/css/userproperties.css"
     render() {
       
 return(
-<div className="container rounded bg-white mt-5 mb-5" >
+
+<div className="wrapper" style={{width:"100%",height:"100%",marginTop:0}}>
+    <div style={{width:670,marginTop:70,marginLeft:"20%",display:"inline-block"}}>
+
+    <div className="container rounded bg-white mt-5 mb-5" >
+  <div style={{background:"black"}}><NavbarComponent/></div>  
     <div className="row">
         <div className="col-md-3 border-right">
             <div className="d-flex flex-column align-items-center text-center p-3 py-5">
@@ -44,6 +50,27 @@ return(
 
     </div>
 </div>
+
+  
+    </div>
+    
+    <div className="boxes">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
+
+
+
+
 
 )
 
