@@ -1,12 +1,17 @@
 import React, { Component,Link } from 'react'
 import   './css/register.css'
 import   'react-bootstrap';
+import Axios from 'axios';
 
   class RegisterForm extends Component {
       
     constructor(props) {
         super(props);
-      
+      this.state={
+		name:'',
+		mail:'',
+		password:''
+	  };
         
       }
 
@@ -15,10 +20,41 @@ ToggleForm(toggleData)
     const container = document.getElementById('container');
     console.log(toggleData)
     toggleData ===("add")? (container.classList.add("right-panel-active")):(container.classList.remove("right-panel-active"))
+}
 
-
+handleChange =({target}) =>{
+	this.setState({[target.name]:target.value});
 
 }
+submitRegister =()=> {
+const user = {
+	name: this.state.name,
+	email:this.state.email,
+	password:this.state.password
+  };
+  Axios.post(`http://localhost:3000/users/`,  user )
+	.then(res => {
+	  console.log(res);
+	  console.log(res.data);
+	})
+}
+
+submitLogin =()=> {
+	console.log("LOGOGG",this.state.email,this.state.password)
+	const responseLogin = Axios.get(`http://localhost:3000/users/`,{params:{email:this.state.email,password:this.state.password}} )
+		.then(res => {
+		  console.log(res);
+		  console.log(res.data);
+		  if(res.data.length >0 )
+		  {
+			  console.log("GİRİŞ BAŞARILI")
+		  }
+		  else
+		  {
+			  console.log("GİRİŞ REDDEDİLDİ")
+		  }
+		})
+	}
 
     render() {
 
@@ -29,7 +65,7 @@ return(
         <h2>Kaydol veya Giriş Yap</h2>
 <div className="container" id="container">
 	<div className="form-container sign-up-container">
-		<form action="#">
+		<div id="registerform">
 			<h1>Hesap Oluştur</h1>
 			<div className="social-container">
 				<a href="#" className="social"><i className="fab fa-facebook-f"></i></a>
@@ -37,14 +73,16 @@ return(
 				<a href="#" className="social"><i className="fab fa-linkedin-in"></i></a>
 			</div>
 			<span>veya kayıt için e-postanızı kullanın</span>
-			<input type="text" placeholder="İsim" />
-			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Şifre" />
-			<button>Kaydol</button>
-		</form>
+			<input name="name" type="name" placeholder="İsim" onChange={this.handleChange}  />
+			<input name="email" type="email" placeholder="Email" onChange={this.handleChange}  />
+			<input name="password" type="password" placeholder="Şifre" onChange={this.handleChange}  />
+			<button onClick={this.submitRegister.bind()}>Kaydol</button>
+
+		</div>
+
 	</div>
 	<div className="form-container sign-in-container">
-		<form action="#">
+	<div id="registerform">
 			<h1>Giriş Yap</h1>
 			<div className="social-container">
 				<a href="#" className="social"><i className="fab fa-facebook-f"></i></a>
@@ -52,11 +90,11 @@ return(
 				<a href="#" className="social"><i className="fab fa-linkedin-in"></i></a>
 			</div>
 			<span>veya hesabınını kullan</span>
-			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Şifre" />
+			<input name="email"  type="email" placeholder="Email" onChange={this.handleChange} />
+			<input name="password"  type="password" placeholder="Şifre" onChange={this.handleChange} />
 			<a href="#">Şifreni mi unuttun?</a>
-			<button>Giriş Yap</button>
-		</form>
+			<button onClick={this.submitLogin.bind()} >Giriş Yap</button>
+		</div>
 	</div>
 	<div className="overlay-container">
 		<div className="overlay">

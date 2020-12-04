@@ -71,7 +71,7 @@ button.ghost {
 	border-color: #FFFFFF;
 }
 
-form {
+#registerform {
 	background-color: #FFFFFF;
 	display: flex;
 	align-items: center;
