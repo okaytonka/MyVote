@@ -6,15 +6,35 @@ import Settings from './button/Settings.js'
 import  './css/fontfamily.css'
 import  './css/profileimages.css'
 import NavbarComponent from './NavbarComponent';
+import Axios from 'axios';
 
 
-  class RegisterForm extends Component {
+class RegisterForm extends Component {
       
     constructor(props) {
         super(props);
-      
+        this.state={
+            responses:[]
+          };
         
       }
+componentDidMount(){
+    this.PhotoViewer();
+}
+
+
+
+PhotoViewer(){
+    const response = Axios.get(`http://localhost:3000/photos/`,
+    {params:{userId:1}} )
+		.then(res => {
+
+console.log(res.data);           
+         this.setState(  {responses:res.data})
+    
+        })
+}
+
 
     render() {
       
@@ -77,47 +97,30 @@ display:"inline-block",border:"0px"}}>
 <div className="bg-light" style={{marginTop:"0",marginLeft:"21%",
 background:"",display:"block",width:"",height:"100%",float:"left"}}>
 <div class="containerm">
-<div class="row">
-  <div class="col-md-4">
-      <div class="image" style={{width:250,height:250}}> <img src="https://i.imgur.com/GV2rUU0.jpg" alt=""/> <i class="fa fa-search fa-3x"></i> </div>
-  </div>
-  <div class="col-md-4">
-      <div class="image" style={{width:250,height:250}}> <img src="https://i.imgur.com/MMfaOcL.jpg" alt=""/> <i class="fa fa-search fa-3x"></i> </div>
-  </div>
-  <div class="col-md-4">
-      <div class="image" style={{width:250,height:250}}> <img src="https://i.imgur.com/nOeI05p.jpg" alt=""/> <i class="fa fa-search fa-3x"></i> </div>
-  </div>
-</div>
+
 
 </div>
+{
+
+this.state.responses.map((mydata) =>
+
 <div class="containerm">
 <div class="row">
   <div class="col-md-4">
-      <div class="image" style={{width:250,height:250}}> <img src="https://i.imgur.com/GV2rUU0.jpg" alt=""/> <i class="fa fa-search fa-3x"></i> </div>
+      <div class="image" style={{width:250,height:250}}> <img src={mydata.listPhoto.photo1} alt=""/> <i class="fa fa-search fa-3x"></i> </div>
   </div>
   <div class="col-md-4">
-      <div class="image" style={{width:250,height:250}}> <img src="https://i.imgur.com/MMfaOcL.jpg" alt=""/> <i class="fa fa-search fa-3x"></i> </div>
+      <div class="image" style={{width:250,height:250}}> <img src={mydata.listPhoto.photo1} alt=""/> <i class="fa fa-search fa-3x"></i> </div>
   </div>
   <div class="col-md-4">
-      <div class="image" style={{width:250,height:250}}> <img src="https://i.imgur.com/nOeI05p.jpg" alt=""/> <i class="fa fa-search fa-3x"></i> </div>
+      <div class="image" style={{width:250,height:250}}> <img src={mydata.listPhoto.photo1} alt=""/> <i class="fa fa-search fa-3x"></i> </div>
   </div>
 </div>
 
 </div>
-<div class="containerm">
-<div class="row">
-  <div class="col-md-4">
-      <div class="image" style={{width:250,height:250}}> <img src="https://i.imgur.com/GV2rUU0.jpg" alt=""/> <i class="fa fa-search fa-3x"></i> </div>
-  </div>
-  <div class="col-md-4">
-      <div class="image" style={{width:250,height:250}}> <img src="https://i.imgur.com/MMfaOcL.jpg" alt=""/> <i class="fa fa-search fa-3x"></i> </div>
-  </div>
-  <div class="col-md-4">
-      <div class="image" style={{width:250,height:250}}> <img src="https://i.imgur.com/nOeI05p.jpg" alt=""/> <i class="fa fa-search fa-3x"></i> </div>
-  </div>
-</div>
 
-</div>
+)
+}
 
 
 </div>
