@@ -1,45 +1,37 @@
 {
   "users": [
     {
-      "name": "Okay Tonka",
-      "email": "okay",
-      "password": "tonka",
+      "name": "ad",
+      "password": "şifre2",
       "id": 1
     }
   ],
-
-  "photos":[
+  "photos": [
     {
-      "userId":1,
-      "postId":1,
-      "listPhoto":
-      {
-        "photo1":"https://i.imgur.com/GV2rUU0.jpg",
-        "photo2":"https://zwing.site/react-image/static/img/logo.ffda68b3.jpg",
-        "photo3":"https://i.imgur.com/GV2rUU0.jpg"
-
-      }
-     
-    },
-    {
-      "userId":1,
-      "postId":2,
-      "listPhoto":
-      {
-        "photo1":"https://i.imgur.com/GV2rUU0.jpg",
-        "photo2":"https://zwing.site/react-image/static/img/logo.ffda68b3.jpg",
-        "photo3":"https://i.imgur.com/GV2rUU0.jpg"
-
+      "userId": 1,
+      "postId": 1,
+      "listPhoto": {
+        "photo1": "https://i.imgur.com/GV2rUU0.jpg",
+        "photo2": "https://zwing.site/react-image/static/img/logo.ffda68b3.jpg",
+        "photo3": "https://i.imgur.com/GV2rUU0.jpg"
       }
     },
     {
-      "userId":2,
-      "postId":1,
-      "listPhoto":
-      {
-      "photo1":"asdsad",
-      "photo2":"asdsad",
-      "photo3":"asdsad"
+      "userId": 1,
+      "postId": 2,
+      "listPhoto": {
+        "photo1": "https://i.imgur.com/GV2rUU0.jpg",
+        "photo2": "https://zwing.site/react-image/static/img/logo.ffda68b3.jpg",
+        "photo3": "https://i.imgur.com/GV2rUU0.jpg"
+      }
+    },
+    {
+      "userId": 2,
+      "postId": 1,
+      "listPhoto": {
+        "photo1": "asdsad",
+        "photo2": "asdsad",
+        "photo3": "asdsad"
       }
     }
   ]

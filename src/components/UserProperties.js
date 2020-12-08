@@ -2,6 +2,7 @@ import React, { Component,Link } from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
 import "../components/css/userproperties.css"
 import NavbarComponent from './NavbarComponent';
+import Axios from 'axios';
 
   class UserProperties extends Component {
       
@@ -9,6 +10,31 @@ import NavbarComponent from './NavbarComponent';
         super(props);
       
         
+      }
+      handleChange =({target}) =>{
+        this.setState({[target.name]:target.value});
+
+
+    
+    }
+
+      SaveSettings(){
+          const updateData=
+          {
+            name:this.state.name,
+            password:this.state.password
+          }
+              console.log("SAVE SETTİNG",updateData)
+          
+        const response = Axios.put(`http://localhost:3000/users/1`,updateData
+         )
+            .then(res => {
+    
+    console.log(res.data);           
+             this.setState(  {responses:res.data})
+        
+            })
+
       }
 
     render() {
@@ -33,18 +59,24 @@ return(
                     <h6 className="text-right">Profilini Düzenle</h6>
                 </div>
                 <div className="row mt-2">
-                    <div className="col-md-6"><label className="labels">Ad</label><input type="text" className="form-control" placeholder="Ad" value="Okay"/></div>
-                    <div className="col-md-6"><label className="labels">Soyad</label><input type="text" className="form-control" value="Tonka" placeholder="Tonka"/></div>
+                    <div className="col-md-6"><label className="labels">Ad</label>
+                    <input name="name"  type="text" className="form-control" placeholder="Ad" onChange={this.handleChange} /></div>
+                    <div className="col-md-6"><label className="labels">Soyad</label>
+                    <input type="text" className="form-control" placeholder="Tonka"/></div>
                 </div>
                 <div className="row mt-3">
-                    <div className="col-md-12"><label className="labels">Şifre</label><input type="text" className="form-control" placeholder="Şifre" value="şifremm"/></div>
-                    <div className="col-md-12"><label className="labels">Hakkımda</label><input type="text" className="form-control" placeholder="Hakkımda" value="Hakkımda Kısmı"/></div>
-                    <div className="col-md-12"><label className="labels">Okul</label><input type="text" className="form-control" placeholder="Okul" value="Sakarya Üniversitesi"/></div>
+                    <div className="col-md-12"><label className="labels">Şifre</label>
+                    <input name="password" type="text" className="form-control" placeholder="Şifre" onChange={this.handleChange} /></div>
+                    <div className="col-md-12"><label className="labels">Hakkımda</label>
+                    <input type="text" className="form-control" placeholder="Hakkımda" value="Hakkımda Kısmı"/></div>
+                    <div className="col-md-12"><label className="labels">Okul</label>
+                    <input type="text" className="form-control" placeholder="Okul" /></div>
                 </div>
                 <div className="row mt-3">
-                    <div className="col-md-6"><label className="labels">Ülke</label><input type="text" className="form-control" placeholder="Ülke" value="Türkiye"/></div>
+                    <div className="col-md-6"><label className="labels">Ülke</label>
+                    <input name="country" type="text" className="form-control" placeholder="Ülke" /></div>
                 </div>
-                <div className="mt-5 text-center"><button className="btn btn-primary profile-button" type="button">Değişiklikleri Kaydet</button></div>
+                <div className="mt-5 text-center"><button onClick={()=>this.SaveSettings()} className="btn btn-primary profile-button" type="button">Değişiklikleri Kaydet</button></div>
             </div>
         </div>
 

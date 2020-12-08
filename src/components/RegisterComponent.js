@@ -2,6 +2,7 @@ import React, { Component,Link } from 'react'
 import   './css/register.css'
 import   'react-bootstrap';
 import Axios from 'axios';
+import MainComponent from './MainComponent';
 
   class RegisterForm extends Component {
       
@@ -48,7 +49,10 @@ submitLogin =()=> {
 		  if(res.data.length >0 )
 		  {
 			  console.log("GİRİŞ BAŞARILI")
-		  }
+			  this.props.history.push({
+				pathname: '/Home',
+				loginData: res.data,
+			  });		  }
 		  else
 		  {
 			  console.log("GİRİŞ REDDEDİLDİ")
