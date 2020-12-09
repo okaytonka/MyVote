@@ -2,8 +2,9 @@ import React, { Component,Link } from 'react'
 import   './css/register.css'
 import   'react-bootstrap';
 import Axios from 'axios';
-import MainComponent from './MainComponent';
 
+import {connect} from 'react-redux';
+import {addUser} from '../redux/actions'
   class RegisterForm extends Component {
       
     constructor(props) {
@@ -11,7 +12,9 @@ import MainComponent from './MainComponent';
       this.state={
 		name:'',
 		mail:'',
-		password:''
+		password:'',
+
+		loginData:[]
 	  };
         
       }
@@ -49,6 +52,7 @@ submitLogin =()=> {
 		  if(res.data.length >0 )
 		  {
 			  console.log("GİRİŞ BAŞARILI")
+			  this.addToRedux(res.data);
 			  this.props.history.push({
 				pathname: '/Home',
 				loginData: res.data,
@@ -58,6 +62,11 @@ submitLogin =()=> {
 			  console.log("GİRİŞ REDDEDİLDİ")
 		  }
 		})
+	}
+
+	addToRedux =(data)=>{
+		this.props.addUser({content:data});
+		console.log("REUDX",this.props.loginData.content.content[0].name)
 	}
 
     render() {
@@ -132,4 +141,12 @@ return(
       
     }
 }
-export default RegisterForm;
+
+function mapStateToProps(state)
+{
+	return{
+		loginData:state.mainReducer.byIds
+	}
+}
+
+export default connect(mapStateToProps, {addUser})(RegisterForm);

@@ -9,7 +9,7 @@ import NavbarComponent from './NavbarComponent';
 import Axios from 'axios';
 
 
-class RegisterForm extends Component {
+class UserProfile extends Component {
       
     constructor(props) {
         super(props);
@@ -150,4 +150,4 @@ this.state.responses.map((mydata) =>
       
     }
 }
-export default RegisterForm;
+export default UserProfile;
