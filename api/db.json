@@ -1,11 +1,12 @@
 {
   "users": [
     {
-      "name": "Okay",
-      "password": "Tonka",
-      "about": "Hakkımda Kısmı",
-      "school": "Sakarya Ünv",
+      "name": "Okay tonka",
+      "password": "2",
+      "about": "Hakkımda Kısmı2",
+      "school": "Sakarya Ünv.",
       "country": "Türkiye",
+      "email": "okay@mail",
       "id": 1
     }
   ],

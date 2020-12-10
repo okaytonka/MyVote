@@ -11,8 +11,14 @@ import {addUser} from '../redux/actions'
     constructor(props) {
         super(props);
         this.state={
-    
-            loginData:[]
+                name:'',
+                email:'',
+                password:'',
+                about:'',
+                school:'',
+                country:'',
+        
+                loginData:[]
           };
       }
       handleChange =({target}) =>{
@@ -29,10 +35,10 @@ import {addUser} from '../redux/actions'
             password:this.state.password,
             about:this.state.about,
             school:this.state.school,
-            country:this.state.country
+            country:this.state.country,
+            email:this.props.loginData.content.content[0].email
 
           }
-              console.log("SAVE SETTİNG",updateData)
           
         const response = Axios.put(`http://localhost:3000/users/`+this.props.loginData.content.content[0].id,updateData
          )
@@ -45,8 +51,27 @@ import {addUser} from '../redux/actions'
 
       }
       componentDidMount(){
-
-        console.log("REUDXPROPS",this.props.loginData.content.content[0].id)
+        const responseLogin = Axios.get(`http://localhost:3000/users/`,{params:{id:this.props.loginData.content.content[0].id}} )
+		.then(res => {
+		  console.log(res);
+		  console.log(res.data);
+		  if(res.data.length >0 )
+		  {
+            this.setState({
+                name:res.data[0].name,
+                email:res.data[0].email,
+                password:res.data[0].password,
+                about:res.data[0].about,
+                school:res.data[0].school,
+                country:res.data[0].country,
+            })
+            
+            }
+		  else
+		  {
+			  console.log("GİRİŞ REDDEDİLDİ")
+		  }
+		})
     
     }
     render() {
@@ -62,7 +87,7 @@ return(
         <div className="col-md-3 border-right">
             <div className="d-flex flex-column align-items-center text-center p-3 py-5">
                 <img className="rounded-circle mt-5" src="https://i.imgur.com/O1RmJXT.jpg" width="90"></img>
-                    <span className="font-weight-bold">Okay Tonka</span><span className="text-black-50">okaytonka@gmail.com</span><span>Türkiye</span>
+<span className="font-weight-bold">{this.state.name}</span><span className="text-black-50">{this.state.email}</span><span>{this.state.country}</span>
                     </div>
         </div>
         <div className="col-md-5 border-right">
@@ -70,23 +95,21 @@ return(
                 <div className="d-flex justify-content-between align-items-center mb-3">
                     <h6 className="text-right">Profilini Düzenle</h6>
                 </div>
-                <div className="row mt-2">
-                    <div className="col-md-6"><label className="labels">Ad</label>
-                    <input name="name"  type="text" className="form-control" placeholder="Ad" onChange={this.handleChange} /></div>
-                    <div className="col-md-6"><label className="labels">Soyad</label>
-                    <input type="text" className="form-control" placeholder="Tonka"/></div>
+                <div className="row mt-3">
+                    <div className="col-md-12"><label className="labels">Ad</label>
+                    <input name="name"  type="text" className="form-control" placeholder="Ad Soyad" onChange={this.handleChange} value={this.state.name} /></div>
                 </div>
                 <div className="row mt-3">
                     <div className="col-md-12"><label className="labels">Şifre</label>
                     <input name="password" type="text" className="form-control" placeholder="Şifre" onChange={this.handleChange} /></div>
                     <div  className="col-md-12"><label className="labels">Hakkımda</label>
-                    <input name="about" type="text" className="form-control" placeholder="Hakkımda" onChange={this.handleChange} /></div>
+                    <input name="about" type="text" className="form-control" placeholder="Hakkımda" onChange={this.handleChange} value={this.state.about}  /></div>
                     <div className="col-md-12"><label className="labels">Okul</label>
-                    <input name="school"  type="text" className="form-control" placeholder="Okul" onChange={this.handleChange}/></div>
+                    <input name="school"  type="text" className="form-control" placeholder="Okul" onChange={this.handleChange} value={this.state.school} /></div>
                 </div>
                 <div className="row mt-3">
                     <div className="col-md-6"><label className="labels">Ülke</label>
-                    <input name="country" type="text" className="form-control" placeholder="Ülke" onChange={this.handleChange} /></div>
+                    <input name="country" type="text" className="form-control" placeholder="Ülke" onChange={this.handleChange } value={this.state.country}  /></div>
                 </div>
                 <div className="mt-5 text-center"><button onClick={()=>this.SaveSettings()} className="btn btn-primary profile-button" type="button">Değişiklikleri Kaydet</button></div>
             </div>

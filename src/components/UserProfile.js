@@ -15,6 +15,12 @@ class UserProfile extends Component {
     constructor(props) {
         super(props);
         this.state={
+            name:'',
+            email:'',
+            password:'',
+            about:'',
+            school:'',
+            country:'',
             responses:[]
           };
         
@@ -22,6 +28,29 @@ class UserProfile extends Component {
 componentDidMount(){
     this.PhotoViewer();
     console.log("USEPROFİLEREDUX",this.props.loginData.content.content[0].name)
+
+    const responseLogin = Axios.get(`http://localhost:3000/users/`,{params:{id:this.props.loginData.content.content[0].id}} )
+    .then(res => {
+      console.log(res);
+      console.log(res.data);
+      if(res.data.length >0 )
+      {
+        this.setState({
+            name:res.data[0].name,
+            email:res.data[0].email,
+            password:res.data[0].password,
+            about:res.data[0].about,
+            school:res.data[0].school,
+            country:res.data[0].country,
+        })
+        
+        }
+      else
+      {
+          console.log("GİRİŞ REDDEDİLDİ")
+      }
+    })
+
 
 }
 
@@ -65,7 +94,7 @@ float:"left",boxShadow:"5px 5px 4px 8px #EDF2F4"}}>
       <div class="profile"> <img src="https://i.imgur.com/JgYD2nQ.jpg" class="rounded-circle" width="80"></img> </div>
   </div>
   <div class="mt-5 text-center" >
-      <h4 class="mb-0">Okay Tonka</h4> <span class="text-muted d-block mb-2">Şehir</span> <button class="btn btn-primary btn-sm follow">Takip Et</button>
+<h4 class="mb-0">{this.state.name}</h4> <span class="text-muted d-block mb-2">{this.state.country}</span> <button class="btn btn-primary btn-sm follow">Takip Et</button>
       <div class="d-flex justify-content-between align-items-center mt-4 px-4" >
           <div class="stats">
               <h6 class="mb-0">Takipçi Sayısı</h6> <span>8,797</span>
@@ -81,7 +110,7 @@ float:"left",boxShadow:"5px 5px 4px 8px #EDF2F4"}}>
 display:"inline-block",border:"0px"}}>
 <div className="card-body" style={{maxWidth: "auto",margin:"0px",display:"inline-block",border:"0px",fontFamily:"'Work Sans'"}}>
 <h5 className="card-title">Hakkımda</h5>
-<p className="card-text">HAKKIMDA KISMI AÇIKLAMASI</p>
+<p className="card-text">{this.state.about}</p>
 </div>
 <div style={{maxWidth: "auto",margin:"0px",display:"inline-block",border:"0px"}}><SendMessage/></div>
 <div style={{maxWidth: "auto",margin:"0px",display:"inline-block",border:"0px"}}><Settings/></div>

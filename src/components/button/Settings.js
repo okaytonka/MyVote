@@ -1,7 +1,8 @@
-import React from 'react';
+import React ,{ Component } from 'react';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import { BrowserRouter as Router, Link } from "react-router-dom";
 
 export default function Settings() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -27,7 +28,7 @@ export default function Settings() {
         onClose={handleClose}
       >
         <MenuItem onClick={handleClose}>Profili Düzenle</MenuItem>
-        <MenuItem onClick={handleClose}>Hesap Ayarları</MenuItem>
+        <MenuItem onClick={handleClose}><Link to="/Settings">Ayarlar</Link></MenuItem>
         <MenuItem onClick={handleClose}>Çıkış</MenuItem>
       </Menu>
     </div>
