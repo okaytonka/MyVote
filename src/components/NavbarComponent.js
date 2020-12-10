@@ -74,9 +74,9 @@ render() {
 
                 <MDBDropdownMenu className="dropdown-default" right="false">
 
-                <MDBDropdownItem href="/Profile">Profilim</MDBDropdownItem>
-                  <MDBDropdownItem href="/Settings">Ayarlar</MDBDropdownItem>
-                  <MDBDropdownItem href="/logout">Çıkış</MDBDropdownItem>
+                <MDBNavLink to="/Profile" style={{color:"black"}}>Profilim</MDBNavLink>
+                <MDBNavLink to="/Settings" style={{color:"black"}}>Ayarlar</MDBNavLink>
+                <MDBNavLink to="/Logout" style={{color:"black"}}>Çıkış Yap</MDBNavLink>
    
 
                 </MDBDropdownMenu>

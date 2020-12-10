@@ -54,8 +54,7 @@ submitLogin =()=> {
 			  console.log("GİRİŞ BAŞARILI")
 			  this.addToRedux(res.data);
 			  this.props.history.push({
-				pathname: '/Home',
-				loginData: res.data,
+				pathname: '/Home'
 			  });		  }
 		  else
 		  {

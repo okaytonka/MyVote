@@ -4,12 +4,16 @@ import "../components/css/userproperties.css"
 import NavbarComponent from './NavbarComponent';
 import Axios from 'axios';
 
+import {connect} from 'react-redux';
+import {addUser} from '../redux/actions'
   class UserProperties extends Component {
       
     constructor(props) {
         super(props);
-      
-        
+        this.state={
+    
+            loginData:[]
+          };
       }
       handleChange =({target}) =>{
         this.setState({[target.name]:target.value});
@@ -22,11 +26,15 @@ import Axios from 'axios';
           const updateData=
           {
             name:this.state.name,
-            password:this.state.password
+            password:this.state.password,
+            about:this.state.about,
+            school:this.state.school,
+            country:this.state.country
+
           }
               console.log("SAVE SETTİNG",updateData)
           
-        const response = Axios.put(`http://localhost:3000/users/1`,updateData
+        const response = Axios.put(`http://localhost:3000/users/`+this.props.loginData.content.content[0].id,updateData
          )
             .then(res => {
     
@@ -36,7 +44,11 @@ import Axios from 'axios';
             })
 
       }
+      componentDidMount(){
 
+        console.log("REUDXPROPS",this.props.loginData.content.content[0].id)
+    
+    }
     render() {
       
 return(
@@ -67,14 +79,14 @@ return(
                 <div className="row mt-3">
                     <div className="col-md-12"><label className="labels">Şifre</label>
                     <input name="password" type="text" className="form-control" placeholder="Şifre" onChange={this.handleChange} /></div>
-                    <div className="col-md-12"><label className="labels">Hakkımda</label>
-                    <input type="text" className="form-control" placeholder="Hakkımda" value="Hakkımda Kısmı"/></div>
+                    <div  className="col-md-12"><label className="labels">Hakkımda</label>
+                    <input name="about" type="text" className="form-control" placeholder="Hakkımda" onChange={this.handleChange} /></div>
                     <div className="col-md-12"><label className="labels">Okul</label>
-                    <input type="text" className="form-control" placeholder="Okul" /></div>
+                    <input name="school"  type="text" className="form-control" placeholder="Okul" onChange={this.handleChange}/></div>
                 </div>
                 <div className="row mt-3">
                     <div className="col-md-6"><label className="labels">Ülke</label>
-                    <input name="country" type="text" className="form-control" placeholder="Ülke" /></div>
+                    <input name="country" type="text" className="form-control" placeholder="Ülke" onChange={this.handleChange} /></div>
                 </div>
                 <div className="mt-5 text-center"><button onClick={()=>this.SaveSettings()} className="btn btn-primary profile-button" type="button">Değişiklikleri Kaydet</button></div>
             </div>
@@ -109,4 +121,13 @@ return(
       
     }
 }
-export default UserProperties;
+
+
+function mapStateToProps(state)
+{
+	return{
+		loginData:state.mainReducer.byIds
+	}
+}
+
+export default connect(mapStateToProps, {addUser})(UserProperties);

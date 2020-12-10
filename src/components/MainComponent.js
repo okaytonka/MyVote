@@ -11,14 +11,23 @@ import PhotoStream from './PhotoStream';
 import { Card } from '@material-ui/core';
 
 
+import {connect} from 'react-redux';
+import {addUser} from '../redux/actions'
   class MainComponent extends Component {
       
     constructor(props) {
         super(props);
       
-        
+        this.state={
+    
+            loginData:[]
+          };
       }
+componentDidMount(){
 
+    console.log("REUDXMAIN",this.props.loginData.content.content[0].name)
+
+}
     render() {
       
 return(
@@ -58,4 +67,13 @@ return(
       
     }
 }
-export default MainComponent;
+
+function mapStateToProps(state)
+{
+	return{
+		loginData:state.mainReducer.byIds
+	}
+}
+
+export default connect(mapStateToProps, {addUser})(MainComponent);
+

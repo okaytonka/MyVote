@@ -1,8 +1,11 @@
 {
   "users": [
     {
-      "name": "ad",
-      "password": "şifre2",
+      "name": "Okay",
+      "password": "Tonka",
+      "about": "Hakkımda Kısmı",
+      "school": "Sakarya Ünv",
+      "country": "Türkiye",
       "id": 1
     }
   ],

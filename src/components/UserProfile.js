@@ -8,7 +8,8 @@ import  './css/profileimages.css'
 import NavbarComponent from './NavbarComponent';
 import Axios from 'axios';
 
-
+import {connect} from 'react-redux';
+import {addUser} from '../redux/actions'
 class UserProfile extends Component {
       
     constructor(props) {
@@ -20,6 +21,8 @@ class UserProfile extends Component {
       }
 componentDidMount(){
     this.PhotoViewer();
+    console.log("USEPROFİLEREDUX",this.props.loginData.content.content[0].name)
+
 }
 
 
@@ -150,4 +153,13 @@ this.state.responses.map((mydata) =>
       
     }
 }
-export default UserProfile;
+
+function mapStateToProps(state)
+{
+	return{
+		loginData:state.mainReducer.byIds
+	}
+}
+
+export default connect(mapStateToProps, {addUser})(UserProfile);
+
