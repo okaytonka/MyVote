@@ -6,22 +6,35 @@ import okay from '../images/okay.jpg'
 import MainComponent from "./MainComponent";
 import RegisterComponent from './RegisterComponent'
 import UserProperties from "./UserProperties";
+import ImageUpload from '../components/button/ImageUpload'
+import { Button,Modal } from "react-bootstrap";
+import {connect} from 'react-redux';
+import {addUser} from '../redux/actions'
 class NavbarComponent extends Component {
-state = {
-  isOpen: false
-};
+  state={
+    visibleModal:false,
+    visibleNavbar:false
+  }
 
-toggleCollapse = () => {
-  this.setState({ isOpen: !this.state.isOpen });
+changeVisible=()=>{
+  this.setState({visibleModal:!this.state.visibleModal});
 }
 
+componentDidMount(){
+  console.log("NAVBAAARRR",this.props.loginData.content)
+if(this.props.loginData.content)
+{
+  this.setState({visibleNavbar:true})
+}
+}
 render() {
+
+
 
 
     return (
 
-
-      <MDBNavbar color="white" dark="true"  expand="md" fixed="top" transparent="false">
+      <MDBNavbar color="white" dark="true"  expand="md" fixed="top" transparent="false" style={{display:this.state.visibleNavbar?(""):("none")}}>
         <MDBNavbarBrand href="/Home">
           <strong className="white-text">MyVote</strong>
         </MDBNavbarBrand>
@@ -33,8 +46,10 @@ render() {
               
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to="#!">Ara</MDBNavLink>
-            </MDBNavItem>
+            <Button variant="primary" onClick={() => this.changeVisible()}>
++      </Button>
+
+              </MDBNavItem>
             {/* <MDBNavItem>
               <MDBNavLink to="#!">Pricing</MDBNavLink>
             </MDBNavItem>
@@ -84,6 +99,30 @@ render() {
             </MDBNavItem>
           </MDBNavbarNav>
         </MDBCollapse>
+
+
+        <Modal
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+      show={this.state.visibleModal}
+      onHide= {()=>this.changeVisible()}
+      >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          Modal heading
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+       <ImageUpload/>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={()=>this.changeVisible()}>Close</Button>
+      </Modal.Footer>
+    </Modal>
+
+
+        
       </MDBNavbar>
      
 
@@ -92,4 +131,11 @@ render() {
   }
 }
 
-export default NavbarComponent;
+function mapStateToProps(state)
+{
+	return{
+		loginData:state.mainReducer.byIds
+	}
+}
+
+export default connect(mapStateToProps, {addUser})(NavbarComponent);
