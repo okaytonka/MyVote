@@ -9,7 +9,9 @@ import UserProperties from "./UserProperties";
 import ImageUpload from '../components/button/ImageUpload'
 import { Button,Modal } from "react-bootstrap";
 import {connect} from 'react-redux';
-import {addUser} from '../redux/actions'
+import {addUser} from '../redux/actions';
+import Axios from 'axios';
+
 class NavbarComponent extends Component {
   state={
     visibleModal:false,
@@ -21,12 +23,35 @@ changeVisible=()=>{
 }
 
 componentDidMount(){
-  console.log("NAVBAAARRR",this.props.loginData.content)
 if(this.props.loginData.content)
 {
   this.setState({visibleNavbar:true})
+  console.log("NAVBAAARRR",this.props.loginData.content.content[0].id)
+
 }
 }
+
+
+ submitImages=  ()=> {
+  console.log("PHOTOSSS",this.props.photos)
+  console.log("loginData",this.props.loginData)
+
+  const photos = {
+   userId:this.props.loginData.content.content[0].id,
+    listPhoto:{
+      photo1:this.props.photos.content.content[0].data_url,
+      photo2:this.props.photos.content.content[1].data_url,
+      photo3:this.props.photos.content.content[2].data_url,
+    }
+    };
+    Axios.post(`http://localhost:3000/photos/`,  photos )
+    .then(res => {
+      console.log(res);
+      console.log(res.data);
+    })
+  };
+
+
 render() {
 
 
@@ -117,7 +142,9 @@ render() {
        <ImageUpload/>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={()=>this.changeVisible()}>Close</Button>
+        <Button onClick={()=>this.changeVisible()}>Kapat</Button>
+        <Button onClick={()=>this.submitImages()}>Kaydet</Button>
+
       </Modal.Footer>
     </Modal>
 
@@ -134,7 +161,8 @@ render() {
 function mapStateToProps(state)
 {
 	return{
-		loginData:state.mainReducer.byIds
+    loginData:state.mainReducer.byIds,
+    photos:state.mainReducer.photos
 	}
 }
 

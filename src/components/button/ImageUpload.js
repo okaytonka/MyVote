@@ -4,15 +4,30 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import ImageUploading, { ImageListType } from "react-images-uploading";
+import {connect} from 'react-redux';
+import {addUser,addPhotos} from '../../redux/actions'
+  function ImageUpload(props) {
 
-export default function ImageUpload() {
+    
     const [images, setImages] = React.useState([]);
-    const maxNumber = 69;
+    const maxNumber = 3;
     const onChange = (imageList, addUpdateIndex) => {
       // data for submit
-      console.log(imageList, addUpdateIndex);
+      console.log("UPLOAD1",imageList);
+      console.log("UPLOAD2");
+      console.log("REUDX1",props.photos)
+
       setImages(imageList);
+      addPhotoToRedux(imageList);
     };
+
+
+     const addPhotoToRedux =(data)=>{
+        props.addPhotos({content:data});
+        console.log("REUDX2",props.photos)
+      }
+      
+
 
   return (
     <div>
@@ -58,3 +73,11 @@ export default function ImageUpload() {
     </div>
   );
 }
+function mapStateToProps(state)
+{
+	return{
+    loginData:state.mainReducer.byIds,
+    photos:state.mainReducer.photos
+	}
+}
+export default connect(mapStateToProps, {addUser,addPhotos})(ImageUpload);
