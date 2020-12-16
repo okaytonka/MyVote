@@ -8,8 +8,9 @@ import  './css/profileimages.css'
 import  './css/maincomponent.css'
 import NavbarComponent from '../components/NavbarComponent';
 import PhotoStream from './PhotoStream';
-import { Card } from '@material-ui/core';
-
+import { Image } from "@zzwing/react-image";
+import { Card } from "@material-ui/core";
+import Axios from 'axios';
 
 import {connect} from 'react-redux';
 import {addUser} from '../redux/actions'
@@ -20,14 +21,30 @@ import {addUser} from '../redux/actions'
       
         this.state={
     
-            loginData:[]
+            loginData:[],
+            responses:[]
           };
       }
+
+
 componentDidMount(){
 
     console.log("REUDXMAIN",this.props.loginData.content.content[0].name)
-
+    this.PhotoViewer();
 }
+
+PhotoViewer(){
+    const response = Axios.get(`http://localhost:3000/photos/`,
+     )
+		.then(res => {
+
+console.log(res.data);           
+         this.setState(  {responses:res.data})
+    
+        })
+}
+
+
     render() {
       
 return(
@@ -36,13 +53,28 @@ return(
 <NavbarComponent/>
 <div className="wrapper" style={{width:"100%",height:"100em",marginTop:0}}>
     <div style={{width:470,marginTop:250,marginLeft:"30%",display:"inline-block"}}>
-    <PhotoStream/>
-    <PhotoStream/>
-    <PhotoStream/>
-    <PhotoStream/>
-    <PhotoStream/>
-    <PhotoStream/>
-    <PhotoStream/>
+
+    {
+
+this.state.responses.map((mydata,index) =>
+   // console.log("RESPONSEOLUŞTURUCUMAP",mydata),
+<div class="containerm">
+<div class="row">
+  <div class="col-md-4">
+      <div class="image" style={{width:250,height:250}}> <img src={mydata.listPhoto.photo1} alt=""/> <i class="fa fa-search fa-3x"></i> </div>
+  </div>
+  <div class="col-md-4">
+      <div class="image" style={{width:250,height:250}}> <img src={mydata.listPhoto.photo2} alt=""/> <i class="fa fa-search fa-3x"></i> </div>
+  </div>
+  <div class="col-md-4">
+      <div class="image" style={{width:250,height:250}}> <img src={mydata.listPhoto.photo3} alt=""/> <i class="fa fa-search fa-3x"></i> </div>
+  </div>
+</div>
+
+</div>
+
+)
+}
 
   
     </div>

@@ -38,6 +38,7 @@ if(this.props.loginData.content)
 
   const photos = {
    userId:this.props.loginData.content.content[0].id,
+   date: new Date().toLocaleString(),
     listPhoto:{
       photo1:this.props.photos.content.content[0].data_url,
       photo2:this.props.photos.content.content[1].data_url,
