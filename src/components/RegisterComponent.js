@@ -5,6 +5,7 @@ import Axios from 'axios';
 
 import {connect} from 'react-redux';
 import {addUser} from '../redux/actions'
+const REACT_APP_SERVER_URL=process.env.REACT_APP_SERVER_URL;
   class RegisterForm extends Component {
       
     constructor(props) {
@@ -31,12 +32,13 @@ handleChange =({target}) =>{
 
 }
 submitRegister =()=> {
+	console.log("LOGOGG",REACT_APP_SERVER_URL)
 const user = {
 	name: this.state.name,
 	email:this.state.email,
 	password:this.state.password
   };
-  Axios.post(`http://localhost:3000/users/`,  user )
+  Axios.post(REACT_APP_SERVER_URL+'users',  user )
 	.then(res => {
 	  console.log(res);
 	  console.log(res.data);
@@ -44,7 +46,6 @@ const user = {
 }
 
 submitLogin =()=> {
-	console.log("LOGOGG",this.state.email,this.state.password)
 	const responseLogin = Axios.get(`http://localhost:3000/users/`,{params:{email:this.state.email,password:this.state.password}} )
 		.then(res => {
 		  console.log(res);
