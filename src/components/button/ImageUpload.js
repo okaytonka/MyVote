@@ -54,16 +54,16 @@ import {addUser,addPhotos} from '../../redux/actions'
               onClick={onImageUpload}
               {...dragProps}
             >
-              Click or Drop here
+              Tıkla veya Buraya Sürükle
             </button>
             &nbsp;
-            <button onClick={onImageRemoveAll}>Remove all images</button>
+            <button onClick={onImageRemoveAll}>Fotoğrafları Kaldır</button>
             {imageList.map((image, index) => (
               <div key={index} className="image-item">
                 <img src={image.data_url} alt="" width="100" />
                 <div className="image-item__btn-wrapper">
-                  <button onClick={() => onImageUpdate(index)}>Update</button>
-                  <button onClick={() => onImageRemove(index)}>Remove</button>
+                  <button onClick={() => onImageUpdate(index)}>Güncelle</button>
+                  <button onClick={() => onImageRemove(index)}>Kaldır</button>
                 </div>
               </div>
             ))}

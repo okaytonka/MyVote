@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\okayt\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\okayt\\.nuget\\packages"
+    ]
+  }
+}

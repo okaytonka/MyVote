@@ -27,3 +27,4 @@ debug.log
 
 # api keys
 .env 
+api/db.json
