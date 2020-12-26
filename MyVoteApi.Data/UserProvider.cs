@@ -26,5 +26,16 @@ namespace MyVoteApi.Data
             }
             return user;
         }
+
+        public IEnumerable<User> GetLogin(User user)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+             return  connection.Query<User>("SELECT * FROM [User] WHERE email=@email and password=@password ", new {user.email,user.password });
+
+
+            }
+        }
+
     }
 }

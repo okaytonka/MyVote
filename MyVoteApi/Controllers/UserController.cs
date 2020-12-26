@@ -24,18 +24,19 @@ namespace MyVoteApi.Service.Controllers
 
 
         // GET: api/<UserController>
-        [HttpGet]
+        [HttpGet()]
         public IEnumerable<User> Get()
         {
             return userProvider.Get();
         }
 
         // GET api/<UserController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpPost("GetLogin")]
+        public IEnumerable<User> GetLogin([FromBody] User user)
         {
-            return "value";
+            return userProvider.GetLogin(user);
         }
+
 
         // POST api/<UserController>
         [HttpPost]

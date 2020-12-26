@@ -9,5 +9,7 @@ namespace MyVoteApi.Data
     public interface IUserProvider
     {
         IEnumerable<User> Get();
+        IEnumerable<User> GetLogin(User user);
+
     }
 }
