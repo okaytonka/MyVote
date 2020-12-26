@@ -24,7 +24,7 @@ namespace MyVoteApi.Service.Controllers
 
 
         // GET: api/<UserController>
-        [HttpGet()]
+        [HttpGet("AllUsers")]
         public IEnumerable<User> Get()
         {
             return userProvider.Get();
