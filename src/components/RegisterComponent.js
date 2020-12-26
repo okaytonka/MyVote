@@ -40,7 +40,7 @@ const user = {
   console.log("submitRegister",user)
 
 
-  Axios.post(REACT_APP_SERVER_URL+'user',  user )
+  Axios.post(REACT_APP_SERVER_URL+'user',user )
 	.then(res => {
 	  console.log(res);
 	  console.log(res.data);
@@ -48,7 +48,11 @@ const user = {
 }
 
 submitLogin =()=> {
-	const responseLogin = Axios.get(`http://localhost:3000/users/`,{params:{email:this.state.email,password:this.state.password}} )
+	const user = {
+		email:this.state.email,
+		password:this.state.password
+	  };
+	const responseLogin = Axios.post(REACT_APP_SERVER_URL+`user/GetLogin`,user )
 		.then(res => {
 		  console.log(res);
 		  console.log(res.data);
