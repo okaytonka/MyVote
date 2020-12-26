@@ -32,13 +32,15 @@ handleChange =({target}) =>{
 
 }
 submitRegister =()=> {
-	console.log("LOGOGG",REACT_APP_SERVER_URL)
 const user = {
 	name: this.state.name,
 	email:this.state.email,
 	password:this.state.password
-  };
-  Axios.post(REACT_APP_SERVER_URL+'users',  user )
+  };	
+  console.log("submitRegister",user)
+
+
+  Axios.post(REACT_APP_SERVER_URL+'user',  user )
 	.then(res => {
 	  console.log(res);
 	  console.log(res.data);

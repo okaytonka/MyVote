@@ -11,6 +11,7 @@ import { Button,Modal } from "react-bootstrap";
 import {connect} from 'react-redux';
 import {addUser} from '../redux/actions';
 import Axios from 'axios';
+import SearchBar from "./button/SearchBar";
 
 class NavbarComponent extends Component {
   state={
@@ -76,6 +77,11 @@ render() {
 +      </Button>
 
               </MDBNavItem>
+              <div style={{width:"70%",height:"80%"}}>
+              <SearchBar/>
+
+              </div>
+
             {/* <MDBNavItem>
               <MDBNavLink to="#!">Pricing</MDBNavLink>
             </MDBNavItem>
