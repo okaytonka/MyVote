@@ -1,5 +1,5 @@
 {
-  "FilePath": "c:\\Users\\okayt\\Desktop\\Repo\\MyVote\\MyVoteApi\\MyVoteApi.csproj",
+  "FilePath": "c:\\Users\\okayt\\Desktop\\Repo\\MyVote\\MyVoteApi\\MyVoteApi.Service.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-3.0",
     "LanguageVersion": "5.0",
@@ -15600,7 +15600,7 @@
     ],
     "CSharpLanguageVersion": 900
   },
-  "RootNamespace": "MyVoteApi",
+  "RootNamespace": "MyVoteApi.Service",
   "Documents": [],
   "SerializationFormat": "0.2"
 }

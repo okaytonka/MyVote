@@ -1,0 +1,12 @@
+C:\Users\okayt\Desktop\Repo\MyVote\MyVoteApi.Data\bin\Debug\net5.0\MyVoteApi.Data.deps.json
+C:\Users\okayt\Desktop\Repo\MyVote\MyVoteApi.Data\bin\Debug\net5.0\MyVoteApi.Data.dll
+C:\Users\okayt\Desktop\Repo\MyVote\MyVoteApi.Data\bin\Debug\net5.0\ref\MyVoteApi.Data.dll
+C:\Users\okayt\Desktop\Repo\MyVote\MyVoteApi.Data\bin\Debug\net5.0\MyVoteApi.Data.pdb
+C:\Users\okayt\Desktop\Repo\MyVote\MyVoteApi.Data\obj\Debug\net5.0\MyVoteApi.Data.csprojAssemblyReference.cache
+C:\Users\okayt\Desktop\Repo\MyVote\MyVoteApi.Data\obj\Debug\net5.0\MyVoteApi.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\okayt\Desktop\Repo\MyVote\MyVoteApi.Data\obj\Debug\net5.0\MyVoteApi.Data.AssemblyInfoInputs.cache
+C:\Users\okayt\Desktop\Repo\MyVote\MyVoteApi.Data\obj\Debug\net5.0\MyVoteApi.Data.AssemblyInfo.cs
+C:\Users\okayt\Desktop\Repo\MyVote\MyVoteApi.Data\obj\Debug\net5.0\MyVoteApi.Data.csproj.CoreCompileInputs.cache
+C:\Users\okayt\Desktop\Repo\MyVote\MyVoteApi.Data\obj\Debug\net5.0\MyVoteApi.Data.dll
+C:\Users\okayt\Desktop\Repo\MyVote\MyVoteApi.Data\obj\Debug\net5.0\ref\MyVoteApi.Data.dll
+C:\Users\okayt\Desktop\Repo\MyVote\MyVoteApi.Data\obj\Debug\net5.0\MyVoteApi.Data.pdb
