@@ -11,6 +11,7 @@ namespace MyVoteApi.Data
         void Create(User user);
         void Update(User user);
         void Delete(int userId);
+        void UpdateUser(User user);
 
     }
 }
