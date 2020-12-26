@@ -37,5 +37,17 @@ namespace MyVoteApi.Data
             }
         }
 
+        public IEnumerable<User> GetProfile(int id)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                return connection.Query<User>("SELECT * FROM [User] WHERE id=@id", new { id });
+
+
+            }
+        }
+
+        
+
     }
 }

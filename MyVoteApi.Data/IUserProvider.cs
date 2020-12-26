@@ -10,6 +10,8 @@ namespace MyVoteApi.Data
     {
         IEnumerable<User> Get();
         IEnumerable<User> GetLogin(User user);
+        IEnumerable<User> GetProfile(int id);
 
+        
     }
 }

@@ -30,13 +30,18 @@ namespace MyVoteApi.Service.Controllers
             return userProvider.Get();
         }
 
-        // GET api/<UserController>/5
         [HttpPost("GetLogin")]
         public IEnumerable<User> GetLogin([FromBody] User user)
         {
             return userProvider.GetLogin(user);
         }
 
+        // GET api/<UserController>/5
+        [HttpGet("GetProfile/{id}")]
+        public IEnumerable<User> GetProfile(int id)
+        {
+            return userProvider.GetProfile(id);
+        }
 
         // POST api/<UserController>
         [HttpPost]
