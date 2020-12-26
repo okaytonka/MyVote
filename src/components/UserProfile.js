@@ -10,6 +10,8 @@ import Axios from 'axios';
 
 import {connect} from 'react-redux';
 import {addUser} from '../redux/actions'
+const REACT_APP_SERVER_URL=process.env.REACT_APP_SERVER_URL;
+
 class UserProfile extends Component {
       
     constructor(props) {
@@ -29,7 +31,7 @@ componentDidMount(){
     this.PhotoViewer();
     console.log("USEPROFİLEREDUX",this.props.loginData.content.content[0].name)
 
-    const responseLogin = Axios.get(`http://localhost:3000/users/`,{params:{id:this.props.loginData.content.content[0].id}} )
+    const responseLogin = Axios.get(REACT_APP_SERVER_URL+`user/GetProfile/`+this.props.loginData.content.content[0].id )
     .then(res => {
       console.log(res);
       console.log(res.data);
