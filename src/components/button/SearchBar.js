@@ -7,26 +7,29 @@ import {connect} from 'react-redux';
 import {addUser,addPhotos} from '../../redux/actions'
 import ReactSearchBox from 'react-search-box'
 import Axios from 'axios';
+const REACT_APP_SERVER_URL=process.env.REACT_APP_SERVER_URL;
 
 var data = [
   ] 
-
+var count=0;
   class SearchBar extends Component {
 
  
-      async componentDidMount(){
-
-    const  responseLogin = await Axios.get(`http://localhost:3000/users/` )
-        .then(res => {
-         // console.log(res);
-
-          console.log("isimleer0",res.data);
-          res.data.map(function(item, i){
-            console.log("isimleer",item.name);
-
-            data.push({key:item.id,value:item.name})
+       componentDidMount(){
+         if(count===0)
+         {
+          const  responseLogin =  Axios.get(REACT_APP_SERVER_URL+`user/AllUsers` )
+          .then(res => {
+           // console.log(res);
+  
+            res.data.map(function(item, i){
+  
+              data.push({key:item.id,value:item.name})
+            })
           })
-        })
+         }
+         count++;
+ 
         //console.log("isimleer",data);
 }
 
@@ -49,7 +52,7 @@ var data = [
             placeholder="Arama"
             data={data}
             onSelect ={record => this.submitFriend(record)}
-            callback={record => console.log("bastı")}
+           // callback={record => console.log("bastı")}
           />
 
             </div>
