@@ -35,6 +35,7 @@ namespace MyVoteApi
             services.AddTransient<IUserProvider>(f => new UserProvider(config["ConnectionStrings:MyVoteDbConnectionString"]));
             services.AddTransient<IUserProcessor>(f => new UserProcessor(config["ConnectionStrings:MyVoteDbConnectionString"]));
             services.AddTransient<IPhotoProcessor>(f => new PhotoProcessor(config["ConnectionStrings:MyVoteDbConnectionString"]));
+            services.AddTransient<IPhotoProvider>(f => new PhotoProvider(config["ConnectionStrings:MyVoteDbConnectionString"]));
 
 
             services.AddSwaggerGen(c =>

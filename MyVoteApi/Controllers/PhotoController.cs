@@ -15,9 +15,23 @@ namespace MyVoteApi.Service.Controllers
     {
 
         private readonly IPhotoProcessor photoProcessor;
-        public PhotoController(IPhotoProcessor photoProcessor)
+        private readonly IPhotoProvider photoProvider;
+
+        public PhotoController(IPhotoProcessor photoProcessor, IPhotoProvider photoProvider)
         {
+            this.photoProvider = photoProvider;
             this.photoProcessor = photoProcessor;
+        }
+        
+        [HttpGet("GetMyPhoto/{id}")]
+        public IEnumerable<Photo> GetMyPhoto(int id)
+        {
+            return photoProvider.GetMyPhoto(id);
+        }
+        [HttpGet("GetFriendsPhoto")]
+        public IEnumerable<Photo> GetFriendsPhoto()
+        {
+            return photoProvider.GetFriendsPhoto();
         }
 
         // GET: api/<PhotoController>
