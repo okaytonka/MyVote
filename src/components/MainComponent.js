@@ -14,6 +14,8 @@ import Axios from 'axios';
 
 import {connect} from 'react-redux';
 import {addUser} from '../redux/actions'
+const REACT_APP_SERVER_URL=process.env.REACT_APP_SERVER_URL;
+
   class MainComponent extends Component {
       
     constructor(props) {
@@ -34,7 +36,7 @@ componentDidMount(){
 }
 
 PhotoViewer(){
-    const response = Axios.get(`http://localhost:3000/photos/`,
+    const response = Axios.get(REACT_APP_SERVER_URL+`photo/GetFriendsPhoto/`
      )
 		.then(res => {
 
@@ -61,13 +63,13 @@ this.state.responses.map((mydata,index) =>
 <div class="containerm">
 <div class="row">
   <div class="col-md-4">
-      <div class="image" style={{width:250,height:250}}> <img src={mydata.listPhoto.photo1} alt=""/> <i class="fa fa-search fa-3x"></i> </div>
+      <div class="image" style={{width:250,height:250}}> <img src={mydata.photo1} alt=""/> <i class="fa fa-search fa-3x"></i> </div>
   </div>
   <div class="col-md-4">
-      <div class="image" style={{width:250,height:250}}> <img src={mydata.listPhoto.photo2} alt=""/> <i class="fa fa-search fa-3x"></i> </div>
+      <div class="image" style={{width:250,height:250}}> <img src={mydata.photo2} alt=""/> <i class="fa fa-search fa-3x"></i> </div>
   </div>
   <div class="col-md-4">
-      <div class="image" style={{width:250,height:250}}> <img src={mydata.listPhoto.photo3} alt=""/> <i class="fa fa-search fa-3x"></i> </div>
+      <div class="image" style={{width:250,height:250}}> <img src={mydata.photo3} alt=""/> <i class="fa fa-search fa-3x"></i> </div>
   </div>
 </div>
 
