@@ -23,7 +23,8 @@ class UserProfile extends Component {
             about:'',
             school:'',
             country:'',
-            responses:[]
+            responses:[],
+            photo:""
           };
         
       }
@@ -44,6 +45,7 @@ componentDidMount(){
             about:res.data[0].about,
             school:res.data[0].school,
             country:res.data[0].country,
+            photo:res.data[0].photo
         })
         
         }
@@ -92,7 +94,7 @@ float:"left",boxShadow:"5px 5px 4px 8px #EDF2F4"}}>
   height:"200px",width:"220px",display:"block",backgroundColor:"black"}}>
 <div class="card" style={{backgroundColor:"white"}}>
   <div class="user text-center" >
-      <div class="profile"> <img src="https://i.imgur.com/JgYD2nQ.jpg" class="rounded-circle" width="80"></img> </div>
+      <div class="profile"> <img src={this.state.photo} class="rounded-circle" width="80"></img> </div>
   </div>
   <div class="mt-5 text-center" >
 <h4 class="mb-0">{this.state.name}</h4> <span class="text-muted d-block mb-2">{this.state.country}</span> <button class="btn btn-primary btn-sm follow">Takip Et</button>

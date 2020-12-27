@@ -116,7 +116,7 @@ render() {
             <MDBNavItem>
               <MDBDropdown>
                 <MDBDropdownToggle nav caret>
-                <MDBCardImage src={okay} style={{height:"50px",width:"50px",borderRadius:"50%"}} />
+                <MDBCardImage src={this.props.loginData.content.content[0].photo} style={{height:"50px",width:"50px",borderRadius:"50%"}} />
                 </MDBDropdownToggle>
 
                 <MDBDropdownMenu className="dropdown-default" right="false">

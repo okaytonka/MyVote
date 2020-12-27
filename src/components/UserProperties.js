@@ -6,6 +6,9 @@ import Axios from 'axios';
 
 import {connect} from 'react-redux';
 import {addUser} from '../redux/actions'
+import ProfileImageUpload from './button/ProfileImageUpload';
+import { Button,Modal } from "react-bootstrap";
+
 const REACT_APP_SERVER_URL=process.env.REACT_APP_SERVER_URL;
 
   class UserProperties extends Component {
@@ -19,8 +22,9 @@ const REACT_APP_SERVER_URL=process.env.REACT_APP_SERVER_URL;
                 about:'',
                 school:'',
                 country:'',
-        
-                loginData:[]
+                visibleModal:false,
+                loginData:[],
+                photo:""
           };
       }
       handleChange =({target}) =>{
@@ -29,7 +33,23 @@ const REACT_APP_SERVER_URL=process.env.REACT_APP_SERVER_URL;
 
     
     }
-
+    changeVisible=()=>{
+        this.setState({visibleModal:!this.state.visibleModal});
+      }
+      submitImages=  ()=> {
+        console.log("PHOTOSSS",this.props.photos)
+        console.log("loginData",this.props.loginData)
+      
+        const photo = {
+            photo:this.props.photos.content.content[0].data_url,
+ 
+          };
+          Axios.put(REACT_APP_SERVER_URL+`user/UpdateUserPhoto/`+this.props.loginData.content.content[0].id,  photo )
+          .then(res => {
+            console.log(res);
+            console.log(res.data);
+          })
+        };
       SaveSettings(){
           const updateData=
           {
@@ -65,6 +85,7 @@ const REACT_APP_SERVER_URL=process.env.REACT_APP_SERVER_URL;
                 about:res.data[0].about,
                 school:res.data[0].school,
                 country:res.data[0].country,
+                photo:res.data[0].photo
             })
             
             }
@@ -87,7 +108,7 @@ return(
     <div className="row">
         <div className="col-md-3 border-right">
             <div className="d-flex flex-column align-items-center text-center p-3 py-5">
-                <img className="rounded-circle mt-5" src="https://i.imgur.com/O1RmJXT.jpg" width="90"></img>
+                <img className="rounded-circle mt-5" src={this.state.photo} onClick={() => this.changeVisible()} width="90"></img>
 <span className="font-weight-bold">{this.state.name}</span><span className="text-black-50">{this.state.email}</span><span>{this.state.country}</span>
                     </div>
         </div>
@@ -133,6 +154,28 @@ return(
         <div></div>
         <div></div>
     </div>
+
+    <Modal
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+      show={this.state.visibleModal}
+      onHide= {()=>this.changeVisible()}
+      >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          Modal heading
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+       <ProfileImageUpload/>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={()=>this.changeVisible()}>Kapat</Button>
+        <Button onClick={()=>this.submitImages()}>Kaydet</Button>
+
+      </Modal.Footer>
+    </Modal>
 </div>
 
 
@@ -150,7 +193,9 @@ return(
 function mapStateToProps(state)
 {
 	return{
-		loginData:state.mainReducer.byIds
+        loginData:state.mainReducer.byIds,
+        photos:state.mainReducer.photos
+
 	}
 }
 
