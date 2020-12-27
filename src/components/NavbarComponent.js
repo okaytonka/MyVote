@@ -12,6 +12,7 @@ import {connect} from 'react-redux';
 import {addUser} from '../redux/actions';
 import Axios from 'axios';
 import SearchBar from "./button/SearchBar";
+const REACT_APP_SERVER_URL=process.env.REACT_APP_SERVER_URL;
 
 class NavbarComponent extends Component {
   state={
@@ -39,14 +40,13 @@ if(this.props.loginData.content)
 
   const photos = {
    userId:this.props.loginData.content.content[0].id,
-   date: new Date().toLocaleString(),
-    listPhoto:{
+   date: new Date(),
       photo1:this.props.photos.content.content[0].data_url,
       photo2:this.props.photos.content.content[1].data_url,
       photo3:this.props.photos.content.content[2].data_url,
-    }
+    
     };
-    Axios.post(`http://localhost:3000/photos/`,  photos )
+    Axios.post(REACT_APP_SERVER_URL+`photo`,  photos )
     .then(res => {
       console.log(res);
       console.log(res.data);
