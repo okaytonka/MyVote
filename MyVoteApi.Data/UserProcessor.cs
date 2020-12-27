@@ -54,5 +54,14 @@ namespace MyVoteApi.Data
                     new {user.id, user.name, user.about, user.school, user.country, user.email, user.friends, user.password });
             }
         }
+
+        public void UpdateUserPhoto(User user)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Execute("UPDATE [User] SET photo=@photo WHERE id=@id",
+                    new { user.id, user.photo });
+            }
+        }
     }
 }

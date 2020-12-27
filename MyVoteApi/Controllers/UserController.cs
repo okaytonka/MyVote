@@ -66,7 +66,12 @@ namespace MyVoteApi.Service.Controllers
             userProcessor.UpdateUser(user);
         }
 
-
+        [HttpPut("UpdateUserPhoto/{id}")]
+        public void UpdateUserPhoto(int id, [FromBody] User user)
+        {
+            user.id = id;
+            userProcessor.UpdateUserPhoto(user);
+        }
 
         // DELETE api/<UserController>/5
         [HttpDelete("{id}")]

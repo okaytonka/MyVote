@@ -11,6 +11,7 @@ namespace MyVoteApi.Data
         public string country { get; set; }
         public string email { get; set; }
         public int id { get; set; }
+        public string photo { get; set; }
         public List<object> friends { get; set; }
     }
 }
