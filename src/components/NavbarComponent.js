@@ -17,7 +17,8 @@ const REACT_APP_SERVER_URL=process.env.REACT_APP_SERVER_URL;
 class NavbarComponent extends Component {
   state={
     visibleModal:false,
-    visibleNavbar:false
+    visibleNavbar:false,
+    photo:""
   }
 
 changeVisible=()=>{
@@ -27,7 +28,8 @@ changeVisible=()=>{
 componentDidMount(){
 if(this.props.loginData.content)
 {
-  this.setState({visibleNavbar:true})
+  this.setState({visibleNavbar:true,
+  photo:this.props.loginData.content.content[0].photo})
   console.log("NAVBAAARRR",this.props.loginData.content.content[0].id)
 
 }
@@ -50,6 +52,7 @@ if(this.props.loginData.content)
     .then(res => {
       console.log(res);
       console.log(res.data);
+      this.changeVisible();
     })
   };
 
@@ -116,7 +119,7 @@ render() {
             <MDBNavItem>
               <MDBDropdown>
                 <MDBDropdownToggle nav caret>
-                <MDBCardImage src={this.props.loginData.content.content[0].photo} style={{height:"50px",width:"50px",borderRadius:"50%"}} />
+                <MDBCardImage src={this.state.photo} style={{height:"50px",width:"50px",borderRadius:"50%"}} />
                 </MDBDropdownToggle>
 
                 <MDBDropdownMenu className="dropdown-default" right="false">

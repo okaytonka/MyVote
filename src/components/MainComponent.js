@@ -51,9 +51,9 @@ console.log(res.data);
       
 return(
   
-    <div style={{width:"100%",height:"100em"}}>
+    <div style={{width:"100%",height:"100%"}}>
 <NavbarComponent/>
-<div className="wrapper" style={{width:"100%",height:"100em",marginTop:0}}>
+<div className="wrapper" style={{width:"100%",height:"100%",marginTop:0}}>
     <div style={{width:470,marginTop:250,marginLeft:"30%",display:"inline-block"}}>
 
     {
